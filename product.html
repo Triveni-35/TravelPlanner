@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Add necessary CSS and other meta tags -->
+  <style>
+    .product-image {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Product List</h1>
+  <div class="product">
+    <h2></h2>
+    <p>Jal Mahal</p>
+    <img src="https://ci4.googleusercontent.com/proxy/4ioP1vKSGcFp9EFPpEGb56p9EAyIJjQY32g8iDe8FEZ3jKbdNhbrt4pKw7Dv6TcwXoo4BCem09hMpFwOv-lyqhIcTyt4CLOz-k4xm9THAk7Up_EFTgTvDo2tTUMS41ybPER9Z6NopjCVaiQjkCO3NAsf=s0-d-e1-ft#https://www.tourism.rajasthan.gov.in/content/dam/rajasthan-tourism/english/city/explore/105.jpg" alt="Product 1" class="product-image">
+    <button onclick="addToCart('Product 1', 10)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <h2>Product 2</h2>
+    <p>Price: $15</p>
+    <img src="path_to_product2_image.jpg" alt="Product 2" class="product-image">
+    <button onclick="addToCart('Product 2', 15)">Add to Cart</button>
+  </div>
+
+  <script>
+    function addToCart(productName, price) {
+      // Retrieve the cart items from local storage or initialize an empty array
+      var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+      // Check if the item is already in the cart
+      var isItemInCart = cartItems.some(function(item) {
+        return item.name === productName;
+      });
+
+      // If the item is already in the cart, display an error message
+      if (isItemInCart) {
+        alert('This item is already in your cart!');
+        return;
+      }
+
+      // Add the new item to the cart
+      cartItems.push({ name: productName, price: price });
+
+      // Store the updated cart items back to local storage
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+      alert('Item added to cart successfully!');
+    }
+  </script>
+</body>
+</html>
